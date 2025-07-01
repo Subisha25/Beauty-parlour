@@ -1,0 +1,207 @@
+
+/* Banner Section */
+.banner-section {
+  height: 100vh;
+  background-image: url("https://i.pinimg.com/736x/bf/92/12/bf92121cacef19410b3a8df5e682b470.jpg");
+  /* background-image: url('https://i.pinimg.com/736x/f8/45/45/f845450f907b2aa6aa05357a66664c60.jpg'); Replace with your image */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* ✅ Fixed background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  padding: 20px;
+}
+
+.banner-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4); /* Overlay */
+  z-index: 1;
+}
+
+.servicebanner-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+
+.servicebanner-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #b30059;
+  font-family: 'Satisfy', cursive;
+}
+
+.servicebanner-content p {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
+
+
+
+/* Next Section */
+.next-section {
+  padding: 80px 20px;
+  text-align: center;
+  background-color: #fff8f8;
+  color: #333;
+}
+
+.next-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.next-section p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.glass-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 15px 40px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #f8dae9;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  z-index: 1;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.glass-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 300%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    #e8c4b8,
+    #f3d2d2,
+    #c4a69f,
+    #e8c4b8
+  );
+  background-size: 300% 100%;
+  animation: waveMove 5s ease-in-out infinite;
+  opacity: 0.3;
+  z-index: -1;
+  filter: blur(2px); /* Soft wave blur */
+}
+
+@keyframes waveMove {
+  0% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+@keyframes waveBackground {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-66%);
+  }
+}
+
+.btn-text {
+  letter-spacing: 1px;
+  font-size: 15px;
+}
+
+.btn-icon {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.glass-button:hover .btn-icon {
+  transform: translateX(5px) translateY(-5px);
+}
+
+
+@media (max-width: 480px) {
+
+.glass-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 20px;
+  font-size: 10px;
+  font-weight: 300;
+  color: #f8dae9;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  z-index: 1;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.glass-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 300%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    #e8c4b8,
+    #f3d2d2,
+    #c4a69f,
+    #e8c4b8
+  );
+  background-size: 300% 100%;
+  animation: waveMove 5s ease-in-out infinite;
+  opacity: 0.3;
+  z-index: -1;
+  filter: blur(2px); /* Soft wave blur */
+}
+
+.servicebanner-content h1 {
+  font-size: 25px;
+  margin-bottom: 1rem;
+  color: #b30059;
+  font-family: 'Satisfy', cursive;
+}
+
+.servicebanner-content p {
+  font-size: 14px;
+  margin-bottom: 2rem;
+}
+
+}

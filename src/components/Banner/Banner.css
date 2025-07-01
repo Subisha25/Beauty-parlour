@@ -1,0 +1,198 @@
+/* Banner Container */
+.banner {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #111;
+  background-attachment: fixed; /* ✅ This fixes the image in place */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* Individual Banner Slide */
+.banner-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* ✅ Fixes image */
+  animation: fadeZoom 60s infinite;
+  opacity: 0;
+  z-index: 1;
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 24px;
+  animation: bounce 2s infinite;
+  z-index: 3;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+/* Overlay for darkening images */
+.banner-slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.3); /* Darkens the image slightly */
+    z-index: 1; /* Above image, below content */
+}
+
+/* Keyframes for the fade and zoom effect */
+@keyframes fadeZoom {
+    0% {
+        opacity: 0;
+        transform: scale(1);
+    }
+    /* Fade in within the first 5% of its 60s cycle (3 seconds) */
+    5% {
+        opacity: 1;
+        transform: scale(1.03); /* Start zoom */
+    }
+    /* Stay fully visible and zoomed for a significant portion (e.g., up to 15%) */
+    15% { /* 15% of 60s is 9s. This means it's visible and zooming for 9s */
+        opacity: 1;
+        transform: scale(1.06); /* Continue zooming slowly */
+    }
+    
+    
+    /* Revised fadeZoom for smoother crossfade and continuous loop */
+    0% {
+        opacity: 0;
+        transform: scale(1);
+    }
+    /* Fade in over 1 second (1/60 * 100% = 1.66%) */
+    1.67% { /* 1 second into the 60s cycle */
+        opacity: 1;
+        transform: scale(1.03); /* Initial zoom */
+    }
+    /* Stay at full opacity and continue zoom for the duration the image should be prominent.
+       Each image is visible for 10s. So from 1.67% to around 15% (10s in 60s)
+    */
+    15% { /* Approx 9 seconds into the 60s cycle */
+        opacity: 1;
+        transform: scale(1.06); /* Continue zooming */
+    }
+ 
+    
+    /* New refined keyframes based on 6 images, 60s total, each active for 10s, 2s crossfade */
+    0% { opacity: 0; transform: scale(1); } /* Start hidden */
+    3.33% { opacity: 1; transform: scale(1.02); } /* Fade in (2 seconds) */
+    13.33% { opacity: 1; transform: scale(1.08); } /* Visible and zooming (8 seconds) */
+    16.66% { opacity: 0; transform: scale(1.1); } /* Fade out (2 seconds) */
+    100% { opacity: 0; transform: scale(1); } /* Stay hidden and reset scale for next cycle */
+}
+
+/* Animation Delays - These are perfect for 6 images in a 60-second loop */
+.banner-slide:nth-child(1) { animation-delay: 0s; }
+.banner-slide:nth-child(2) { animation-delay: 10s; }
+.banner-slide:nth-child(3) { animation-delay: 20s; }
+.banner-slide:nth-child(4) { animation-delay: 30s; }
+.banner-slide:nth-child(5) { animation-delay: 40s; }
+.banner-slide:nth-child(6) { animation-delay: 50s; }
+
+
+/* ... (rest of your CSS including banner-content, banner-buttons, and media queries) ... */
+
+.banner-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    z-index: 2; /* Ensure content is above the image overlay */
+}
+
+/* ... (the rest of your CSS for banner-content, banner-buttons, and media queries are fine) ... */
+
+.banner-content h1 {
+  font-family: 'Allura', cursive;
+  
+    font-size: 5rem;
+  margin-bottom: 20px;
+  color: #C5B48F;
+}
+
+.banner-content p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.banner-buttons {
+  background: rgba(255, 255, 255, 0.1);
+ 
+ border-color: #C5B48F;
+  color: #C5B48F;
+  padding: 20px 20px;
+  border-radius: 8px;
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.banner-buttons:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid  #b30059;;
+color: #b30059;
+}
+
+
+@media (max-width: 768px) {
+ .banner-content{
+        top: 60%;
+        width: 400px;
+    }
+  .banner-content h1 {
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+
+  .banner-content p {
+    font-size:12px;
+    margin-bottom: 10px;
+  }
+
+  .banner-buttons {
+    padding: 6px 10px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+    .banner-content{
+        top: 60%;
+        width: 300px;
+    }
+  .banner-content h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .banner-content p {
+    font-size:10px;
+    margin-bottom: 10px;
+  }
+
+  .banner-buttons {
+    padding: 6px 10px;
+    font-size: 10px;
+  }
+}

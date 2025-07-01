@@ -1,0 +1,525 @@
+General header styles
+.header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 20px 40px;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.header-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+
+/* Navigation */
+.header-nav {
+  display: flex;
+font-family: 'Dancing Script', cursive;
+  align-items: center;
+  gap: 50px;
+}
+
+.header-nav a {
+  color: #FBFAF5;
+  text-decoration: none;
+  font-size: 25px;
+  transition: color 0.3s;
+}
+
+.header-nav a:hover {
+  color: #C5B48F;
+}
+
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-btn {
+  background: none;
+  border: none;
+  color: #FBFAF5;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dropdown-btn:hover {
+  color: #C5B48F;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #2E4F2E;
+  color: #FBFAF5;
+  padding: 10px 0;
+  border-radius: 4px;
+  margin-top: 8px;
+  min-width: 160px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu li a {
+  font-family: 'Montserrat', sans-serif;
+  display: block;
+  padding: 8px 16px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #3d6143;
+}
+
+.headerglass-button {
+  position: relative;
+  background: rgba(255, 223, 200, 0.1); /* Beach glass color */
+  border: 1px solid rgba(255, 223, 200, 0.3); /* Peach border */
+  backdrop-filter: blur(8px);
+  color: #FFE5B4; /* Light peach text */
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.headerglass-button:hover {
+  background: rgba(255, 223, 200, 0.25);
+  border-color: #FFDAB9;
+  color: #FFDAB9;
+}
+
+/* Shine animation */
+.headerglass-button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(240, 196, 196, 0.5),
+    transparent
+  );
+  transform: rotate(25deg);
+  animation: shine 2.5s infinite;
+  pointer-events: none;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(25deg);
+  }
+}
+
+.headerbtn-text {
+  z-index: 1;
+}
+
+.headerbtn-icon {
+  z-index: 1;
+}
+
+.logo {
+  height: 100px;
+  width: auto;
+  border-radius: 12px; /* Optional: rounded corners */
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* soft shadow */
+  transition: transform 0.3s ease-in-out;
+}
+
+.logo:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+
+/* Toggle Button for mobile */
+
+
+/* Hide desktop logo in mobile */
+.desktop-logo {
+  display: block;
+}
+
+/* Base Logo */
+.header-logo {
+  font-family: 'Great Vibes', cursive;
+  font-size: 32px;
+  font-weight: bold;
+  color: #b30059;
+  text-decoration: none;
+}
+
+.mobile-nav-top{
+    display: none;
+}
+/* Logo tagline */
+.header-logo span {
+  display: block;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+}
+
+/* Toggle button */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 26px;
+  cursor: pointer;
+  z-index: 2001;
+}
+
+/* Mobile Navigation */
+@media (max-width: 992px) {
+  .mobile-toggle {
+    display: block;
+  }
+
+ .header-nav {
+    position: absolute;
+    top: 0; /* Change this from top: 100% to top: 0 */
+    right: 0;
+    width: 100%;
+    background-color: rgba(17, 17, 17, 0.95);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0;
+    gap: 25px;
+    display: none;
+    transition: all 0.3s ease;
+    z-index: 2000; /* Make sure it's above other elements */
+  }
+
+  .header-nav.open {
+    display: flex;
+  }
+
+  .mobile-nav-top {
+    top: 0;
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .close-icon {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+  }
+
+  .header-nav a,
+  .headerglass-button {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInSlide 0.4s ease forwards;
+  }
+
+  @keyframes fadeInSlide {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+
+@keyframes slideFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation Keyframe */
+@keyframes slideFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+    .header-logo{
+    font-size: 20px;
+}
+}
+
+@media (max-width: 480px) {
+.header-logo{
+    font-size: 20px;
+}
+
+}
+
+/* Pink color for logo inside menu only */
+.mobile-menu-logo {
+  color: #ff69b4 !important; /* Hot pink or your desired shade */
+}
+
+
+
+
+/* Responsive Styles */
+@media screen and (max-width: 992px) {
+  .mobile-toggle {
+    display: block;
+  }
+
+  .header-nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    background-color: rgba(17, 17, 17, 0.95);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0;
+    gap: 25px;
+    display: none;
+    transition: all 0.3s ease;
+  }
+
+  .header-nav.open {
+    display: flex;
+  }
+
+  .headerglass-button {
+    font-size: 16px;
+    padding: 10px 18px;
+  }
+}
+
+
+/* General header styles */
+.header {
+    position: absolute; /* Keep this for the header itself */
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Keep header z-index high enough */
+    padding: 20px 40px;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.header-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Navigation */
+.header-nav {
+    display: flex;
+    font-family: 'Dancing Script', cursive;
+    align-items: center;
+    gap: 50px;
+}
+
+.header-nav a {
+    color: #FBFAF5;
+    text-decoration: none;
+    font-size: 25px;
+    transition: color 0.3s;
+}
+
+.header-nav a:hover {
+    color: #C5B48F;
+}
+
+/* ... (other styles like dropdown, glass button, logo remain the same) ... */
+
+/* Toggle Button for mobile */
+.mobile-toggle {
+    display: none; /* Hidden by default */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+    z-index: 2001; /* Ensure toggle button is above header content */
+}
+
+/* Mobile Navigation */
+@media (max-width: 992px) {
+    .mobile-toggle {
+        display: block; /* Show toggle button on mobile */
+    }
+
+    .header-nav {
+        /* Initial state: hidden off-screen */
+        position: fixed; /* Use fixed to cover entire viewport */
+        top: 0;
+        right: -100%; /* Start off-screen to the right */
+        width: 100%;
+        height: 100vh; /* Make it take full viewport height */
+        background-color: rgba(17, 17, 17, 0.95); /* Dark overlay */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 0;
+        gap: 25px;
+        display: flex; /* Always flex so transition works */
+        visibility: hidden; /* Hide initially but allow layout */
+        transition: right 0.5s ease-out, visibility 0s linear 0.5s; /* Animate right, hide after transition */
+        z-index: 2000; /* Ensure it's above the header and other content */
+        overflow-y: auto; /* Enable scrolling if content exceeds height */
+    }
+
+    .header-nav.open {
+        right: 0; /* Slide in from the right */
+        visibility: visible; /* Make visible immediately on open */
+        transition: right 0.5s ease-out, visibility 0s linear 0s; /* Animate right, show immediately */
+    }
+
+    /* Styles for content inside the mobile menu */
+    .mobile-nav-top {
+        position: absolute; /* Position relative to .header-nav */
+        top: 20px; /* Adjust as needed */
+        width: 100%;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px; /* Adjust spacing as needed */
+    }
+
+    .close-icon {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 26px;
+        cursor: pointer;
+        z-index: 2001; /* Ensure close icon is clickable */
+    }
+
+    /* Animation for menu items within the open menu */
+    .header-nav.open a,
+    .header-nav.open .headerglass-button {
+        opacity: 0;
+        transform: translateY(10px);
+        animation: fadeInSlide 0.4s ease forwards;
+    }
+
+    /* Ensure desktop logo is hidden when mobile menu is open, if it was conflicting */
+    .desktop-logo { /* If you have a separate desktop logo element */
+        display: none;
+    }
+
+    /* Re-adjust the header-logo in mobile view if it's styled differently */
+    .header-logo {
+        font-size: 28px; /* Adjust logo size within mobile menu */
+        color: #b30059; /* Or white, depending on your design for the mobile menu */
+    }
+}
+
+
+/* Remove redundant media queries that conflict */
+/* Remove or consolidate the duplicate @media (max-width: 992px) block */
+/* The second @media (max-width: 992px) block in your original CSS should be removed or merged */
+/*
+@media screen and (max-width: 992px) {
+    .mobile-toggle {
+        display: block;
+    }
+
+    .header-nav {
+        position: absolute; // THIS WAS THE PROBLEM - keeping it absolute within the header's flow
+        top: 100%; // THIS WAS THE PROBLEM - pushing it below the header instead of over
+        right: 0;
+        width: 100%;
+        background-color: rgba(17, 17, 17, 0.95);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 0;
+        gap: 25px;
+        display: none;
+        transition: all 0.3s ease;
+    }
+
+    .header-nav.open {
+        display: flex;
+    }
+
+    .headerglass-button {
+        font-size: 16px;
+        padding: 10px 18px;
+    }
+}
+*/
+
+/* Keep your other responsive styles for logo size if needed */
+@media (max-width: 768px) {
+    .header-logo{
+        font-size: 24px; /* Slightly larger for better readability */
+    }
+}
+
+@media (max-width: 480px) {
+    .header-logo{
+        font-size: 20px;
+    }
+    .header {
+        padding: 15px 20px; /* Adjust header padding for smaller screens */
+    }
+}
+
+/* Keyframes remain the same */
+@keyframes fadeInSlide {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideFadeIn { /* This one seems duplicated or unused directly for menu items now */
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
