@@ -1,15 +1,13 @@
-import React from 'react';
+import React  from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline'; // For consistent styling across browsers
 import Header from './components/Header/Header';
 import Banner from './components/Banner/Banner';
-import BeautyInfoSection from './components/BeautyInfoSection/AboutUs';
-import AboutUs from './components/BeautyInfoSection/AboutUs';
-import BeautySection from './components/BeautyInfoSection/BeautySection';
-import OurServices from './components/OurServices/OurServices';
 import Footer from './components/Footer/Footer';
-
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Service from './components/Services/Service';
+import ContactForm from './components/Contactform/Contactform';
+import Gallery from './components/Gallery/Gallery';
 // Define your custom Material UI theme
 const theme = createTheme({
   palette: {
@@ -61,18 +59,21 @@ const theme = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline /> {/* Applies a consistent baseline to all HTML elements */}
-      <div style={{ position: 'relative' }}>
-        <Header /> 
-        <Banner /> 
-        <AboutUs />
-        <BeautySection />
-        <OurServices />
-        <Footer />
-        {/* You can add other sections/components of your website below the banner */}
-      </div>
-    </ThemeProvider>
+<ThemeProvider theme={theme}>
+  <CssBaseline />
+  <Router> {/* ✅ Move Header inside Router */}
+    <Header />
+    <Routes>
+      <Route path="/" element={<Banner />} />
+      <Route path="/service" element={<Service />} />
+      <Route path="/contactform" element={<ContactForm />} />
+      <Route path="/gallery" element={<Gallery />} />
+
+    </Routes>
+    <Footer />
+  </Router>
+</ThemeProvider>
+
   );
 }
 

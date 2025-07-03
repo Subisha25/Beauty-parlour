@@ -1,5 +1,8 @@
 import React from 'react';
 import './Banner.css';
+import AboutUs from '../BeautyInfoSection/AboutUs';
+import BeautySection from '../BeautyInfoSection/BeautySection';
+import OurServices from '../OurServices/OurServices';
 
 const bannerImages = [
   "https://i.pinimg.com/736x/3f/12/f5/3f12f585444d763cc58802e5f7a07fc1.jpg",
@@ -12,6 +15,7 @@ const bannerImages = [
 
 const Banner = () => {
   return (
+    <>
     <div className="banner">
       {bannerImages.map((image, index) => (
         <div
@@ -29,6 +33,10 @@ const Banner = () => {
 <a href="#next-section" className="scroll-down">↓</a>
 
     </div>
+    <AboutUs />
+    <BeautySection />
+    <OurServices />
+    </>
   );
 };
 

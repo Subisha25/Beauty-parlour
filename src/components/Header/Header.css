@@ -1,7 +1,8 @@
-General header styles
+/* General header styles */
 .header {
-  position: absolute;
+  position: fixed; /* Keep this as fixed */
   top: 0;
+  left: 0; /* Important: Add left: 0; for fixed positioning */
   width: 100%;
   z-index: 1000;
   padding: 20px 40px;
@@ -9,6 +10,7 @@ General header styles
   display: flex;
   justify-content: center;
   font-family: 'Montserrat', sans-serif;
+  
 }
 
 .header-container {
@@ -19,12 +21,10 @@ General header styles
   justify-content: space-between;
 }
 
-
-
 /* Navigation */
 .header-nav {
   display: flex;
-font-family: 'Dancing Script', cursive;
+  font-family: 'Dancing Script', cursive;
   align-items: center;
   gap: 50px;
 }
@@ -162,10 +162,6 @@ font-family: 'Dancing Script', cursive;
   transform: scale(1.05); /* Slight zoom on hover */
 }
 
-
-/* Toggle Button for mobile */
-
-
 /* Hide desktop logo in mobile */
 .desktop-logo {
   display: block;
@@ -180,8 +176,8 @@ font-family: 'Dancing Script', cursive;
   text-decoration: none;
 }
 
-.mobile-nav-top{
-    display: none;
+.mobile-nav-top {
+  display: none;
 }
 /* Logo tagline */
 .header-logo span {
@@ -203,40 +199,123 @@ font-family: 'Dancing Script', cursive;
   z-index: 2001;
 }
 
+/* Add this class to your Header.css */
+.glass-black-bg {
+  border-bottom: 2px solid #b30059 !important;
+  background-color: #000000 !important;
+  backdrop-filter: blur(10px) saturate(180%) brightness(120%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(180%) brightness(120%) !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* Header.css */
+
+/* ... (existing styles) ... */
+
+/* Header Nav Links */
+.header-nav a {
+  color: #FBFAF5;
+  text-decoration: none;
+  font-size: 25px;
+  transition: color 0.3s ease, transform 0.3s ease; /* Added transform for potential hover effects */
+  position: relative; /* Needed for the underline effect */
+  padding-bottom: 5px; /* Space for the underline */
+}
+
+.header-nav a:hover {
+  color: #C5B48F; /* Existing hover color */
+}
+
+/* Active Link Styling */
+.header-nav a.active {
+  color: #b30059; /* Your preferred active color (darker pink/magenta) */
+  font-weight: bold; /* Make it bold */
+  /* Remove text-decoration for active, we'll use a custom underline */
+}
+
+/* Underline effect for all links on hover and active links */
+.header-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0; /* Starts hidden */
+  height: 2px; /* Thickness of the underline */
+  background-color: #b30059; /* Color of the underline */
+  transition: width 0.3s ease-out; /* Animation for width */
+}
+
+.header-nav a:hover::after {
+  width: 100%; /* Expands on hover */
+}
+
+.header-nav a.active::after {
+  width: 100%; /* Stays expanded when active */
+  background-color: #b30059; /* Ensure active underline color */
+}
+
+/* Adjust font size for mobile nav links if needed */
+@media (max-width: 992px) {
+  .header-nav a {
+    font-size: 20px; /* Adjust as needed for mobile menu */
+    padding-bottom: 3px; /* Smaller space for mobile underline */
+  }
+
+  .header-nav a::after {
+      height: 1.5px; /* Thinner underline on mobile */
+  }
+
+  .header-nav.open a.active {
+    color: #ff69b4 !important; /* Ensure active color in mobile menu */
+  }
+}
+
 /* Mobile Navigation */
 @media (max-width: 992px) {
   .mobile-toggle {
     display: block;
   }
 
- .header-nav {
-    position: absolute;
-    top: 0; /* Change this from top: 100% to top: 0 */
-    right: 0;
+  .header-nav {
+    /* Initial state: hidden off-screen */
+    position: fixed; /* Use fixed to cover entire viewport */
+    top: 0;
+    right: -100%; /* Start off-screen to the right */
     width: 100%;
-    background-color: rgba(17, 17, 17, 0.95);
+    height: 100vh; /* Make it take full viewport height */
+    background-color: rgba(17, 17, 17, 0.95); /* Dark overlay */
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 30px 0;
     gap: 25px;
-    display: none;
-    transition: all 0.3s ease;
-    z-index: 2000; /* Make sure it's above other elements */
+    display: flex; /* Always flex so transition works */
+    visibility: hidden; /* Hide initially but allow layout */
+    transition: right 0.5s ease-out, visibility 0s linear 0.5s; /* Animate right, hide after transition */
+    z-index: 2000; /* Ensure it's above the header and other content */
+    overflow-y: auto; /* Enable scrolling if content exceeds height */
   }
 
   .header-nav.open {
-    display: flex;
+    right: 0; /* Slide in from the right */
+    visibility: visible; /* Make visible immediately on open */
+    transition: right 0.5s ease-out, visibility 0s linear 0s; /* Animate right, show immediately */
   }
 
+  /* Styles for content inside the mobile menu */
   .mobile-nav-top {
-    top: 0;
+    position: absolute; /* Position relative to .header-nav */
+    top: 20px; /* Adjust as needed */
     width: 100%;
     padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Adjust spacing as needed */
   }
 
   .close-icon {
@@ -245,281 +324,65 @@ font-family: 'Dancing Script', cursive;
     color: white;
     font-size: 26px;
     cursor: pointer;
+    z-index: 2001; /* Ensure close icon is clickable */
   }
 
-  .header-nav a,
-  .headerglass-button {
+  /* Animation for menu items within the open menu */
+  .header-nav.open a,
+  .header-nav.open .headerglass-button {
     opacity: 0;
     transform: translateY(10px);
     animation: fadeInSlide 0.4s ease forwards;
   }
 
-  @keyframes fadeInSlide {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
-
-
-@keyframes slideFadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Animation Keyframe */
-@keyframes slideFadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (max-width: 768px) {
-    .header-logo{
-    font-size: 20px;
-}
-}
-
-@media (max-width: 480px) {
-.header-logo{
-    font-size: 20px;
-}
-
-}
-
-/* Pink color for logo inside menu only */
-.mobile-menu-logo {
-  color: #ff69b4 !important; /* Hot pink or your desired shade */
-}
-
-
-
-
-/* Responsive Styles */
-@media screen and (max-width: 992px) {
-  .mobile-toggle {
-    display: block;
-  }
-
-  .header-nav {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 100%;
-    background-color: rgba(17, 17, 17, 0.95);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 0;
-    gap: 25px;
+  /* Ensure desktop logo is hidden when mobile menu is open, if it was conflicting */
+  .desktop-logo {
     display: none;
-    transition: all 0.3s ease;
   }
 
-  .header-nav.open {
-    display: flex;
-  }
-
-  .headerglass-button {
-    font-size: 16px;
-    padding: 10px 18px;
+  /* Re-adjust the header-logo in mobile view if it's styled differently */
+  .header-logo {
+    font-size: 28px; /* Adjust logo size within mobile menu */
+    color: #b30059; /* Or white, depending on your design for the mobile menu */
   }
 }
-
-
-/* General header styles */
-.header {
-    position: absolute; /* Keep this for the header itself */
-    top: 0;
-    width: 100%;
-    z-index: 1000; /* Keep header z-index high enough */
-    padding: 20px 40px;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.header-container {
-    width: 100%;
-    max-width: 1200px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* Navigation */
-.header-nav {
-    display: flex;
-    font-family: 'Dancing Script', cursive;
-    align-items: center;
-    gap: 50px;
-}
-
-.header-nav a {
-    color: #FBFAF5;
-    text-decoration: none;
-    font-size: 25px;
-    transition: color 0.3s;
-}
-
-.header-nav a:hover {
-    color: #C5B48F;
-}
-
-/* ... (other styles like dropdown, glass button, logo remain the same) ... */
-
-/* Toggle Button for mobile */
-.mobile-toggle {
-    display: none; /* Hidden by default */
-    background: none;
-    border: none;
-    color: white;
-    font-size: 26px;
-    cursor: pointer;
-    z-index: 2001; /* Ensure toggle button is above header content */
-}
-
-/* Mobile Navigation */
-@media (max-width: 992px) {
-    .mobile-toggle {
-        display: block; /* Show toggle button on mobile */
-    }
-
-    .header-nav {
-        /* Initial state: hidden off-screen */
-        position: fixed; /* Use fixed to cover entire viewport */
-        top: 0;
-        right: -100%; /* Start off-screen to the right */
-        width: 100%;
-        height: 100vh; /* Make it take full viewport height */
-        background-color: rgba(17, 17, 17, 0.95); /* Dark overlay */
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 30px 0;
-        gap: 25px;
-        display: flex; /* Always flex so transition works */
-        visibility: hidden; /* Hide initially but allow layout */
-        transition: right 0.5s ease-out, visibility 0s linear 0.5s; /* Animate right, hide after transition */
-        z-index: 2000; /* Ensure it's above the header and other content */
-        overflow-y: auto; /* Enable scrolling if content exceeds height */
-    }
-
-    .header-nav.open {
-        right: 0; /* Slide in from the right */
-        visibility: visible; /* Make visible immediately on open */
-        transition: right 0.5s ease-out, visibility 0s linear 0s; /* Animate right, show immediately */
-    }
-
-    /* Styles for content inside the mobile menu */
-    .mobile-nav-top {
-        position: absolute; /* Position relative to .header-nav */
-        top: 20px; /* Adjust as needed */
-        width: 100%;
-        padding: 0 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px; /* Adjust spacing as needed */
-    }
-
-    .close-icon {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 26px;
-        cursor: pointer;
-        z-index: 2001; /* Ensure close icon is clickable */
-    }
-
-    /* Animation for menu items within the open menu */
-    .header-nav.open a,
-    .header-nav.open .headerglass-button {
-        opacity: 0;
-        transform: translateY(10px);
-        animation: fadeInSlide 0.4s ease forwards;
-    }
-
-    /* Ensure desktop logo is hidden when mobile menu is open, if it was conflicting */
-    .desktop-logo { /* If you have a separate desktop logo element */
-        display: none;
-    }
-
-    /* Re-adjust the header-logo in mobile view if it's styled differently */
-    .header-logo {
-        font-size: 28px; /* Adjust logo size within mobile menu */
-        color: #b30059; /* Or white, depending on your design for the mobile menu */
-    }
-}
-
-
-/* Remove redundant media queries that conflict */
-/* Remove or consolidate the duplicate @media (max-width: 992px) block */
-/* The second @media (max-width: 992px) block in your original CSS should be removed or merged */
-/*
-@media screen and (max-width: 992px) {
-    .mobile-toggle {
-        display: block;
-    }
-
-    .header-nav {
-        position: absolute; // THIS WAS THE PROBLEM - keeping it absolute within the header's flow
-        top: 100%; // THIS WAS THE PROBLEM - pushing it below the header instead of over
-        right: 0;
-        width: 100%;
-        background-color: rgba(17, 17, 17, 0.95);
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 30px 0;
-        gap: 25px;
-        display: none;
-        transition: all 0.3s ease;
-    }
-
-    .header-nav.open {
-        display: flex;
-    }
-
-    .headerglass-button {
-        font-size: 16px;
-        padding: 10px 18px;
-    }
-}
-*/
 
 /* Keep your other responsive styles for logo size if needed */
 @media (max-width: 768px) {
-    .header-logo{
-        font-size: 24px; /* Slightly larger for better readability */
-    }
+  .header-logo {
+    font-size: 24px; /* Slightly larger for better readability */
+  }
 }
 
 @media (max-width: 480px) {
-    .header-logo{
-        font-size: 20px;
-    }
-    .header {
-        padding: 15px 20px; /* Adjust header padding for smaller screens */
-    }
+  .header-logo {
+    font-size: 20px;
+  }
+  .header {
+    padding: 15px 20px; /* Adjust header padding for smaller screens */
+  }
 }
 
 /* Keyframes remain the same */
 @keyframes fadeInSlide {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-@keyframes slideFadeIn { /* This one seems duplicated or unused directly for menu items now */
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+@keyframes slideFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header.scrolled {
+  background-color: #000000; /* Black background */
+  backdrop-filter: blur(10px) saturate(180%) brightness(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%) brightness(120%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Optional: subtle bottom border */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, border-bottom 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
 }

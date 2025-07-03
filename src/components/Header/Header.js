@@ -1,139 +1,148 @@
-// // // import React, { useState } from 'react';
-// // // import './Header.css';
-
-// // // const Header = () => {
-// // //   const [menuOpen, setMenuOpen] = useState(false);
-
-// // //   const toggleMobileMenu = () => {
-// // //     setMenuOpen(!menuOpen);
-// // //   };
-
-// // //   return (
-// // //     <header className="header">
-// // //       <div className="header-container">
-// // //         <a href="/" className="header-logo">
-// // //           Glovera<span>Beauty Salon</span>
-// // //         </a>
-
-// // //         <button className="mobile-toggle" onClick={toggleMobileMenu}>
-// // //           ☰
-// // //         </button>
-
-// // //         <nav className={`header-nav ${menuOpen ? 'open' : ''}`}>
-// // //           <a href="/">Home</a>
-// // //           <a href="/services">Services</a>
-// // //           <a href="/gallery">Gallery</a>
-// // //           <a href="/contact">Contact Us</a>
-
-// // //           <button className="headerglass-button">
-// // //             <span className="headerbtn-text">Book Appointment</span>
-// // //             <span className="headerbtn-icon">↗</span>
-// // //           </button>
-// // //         </nav>
-// // //       </div>
-// // //     </header>
-// // //   );
-// // // };
-
-// // // export default Header;
-
-
-// // import React, { useState, useEffect } from 'react';
+// // import React, { useEffect, useState } from 'react';
 // // import './Header.css';
+// // import { useLocation } from 'react-router-dom';
+
 
 // // const Header = () => {
 // //   const [menuOpen, setMenuOpen] = useState(false);
+// //     const [isScrolled, setIsScrolled] = useState(false);
+
+// //   const location = useLocation();
+// //   const isPinkBackground = location.pathname === '/service' || location.pathname === '/contactform';
+
+// //     useEffect(() => {
+// //     const handleScroll = () => {
+// //       const scrollTop = window.scrollY;
+// //       setIsScrolled(scrollTop > 30); // scroll > 30px
+// //     };
+
+// //     window.addEventListener('scroll', handleScroll);
+// //     return () => window.removeEventListener('scroll', handleScroll);
+// //   }, []);
 
 // //   const toggleMobileMenu = () => {
-// //     setMenuOpen((prev) => !prev);
+// //     // When opening, prevent scrolling on the body
+// //     if (!menuOpen) {
+// //       document.body.style.overflow = 'hidden';
+// //     } else {
+// //       document.body.style.overflow = 'unset';
+// //     }
+// //     setMenuOpen(!menuOpen);
 // //   };
 
 // //   const closeMenu = () => {
+// //     document.body.style.overflow = 'unset'; // Re-enable scrolling when closing
 // //     setMenuOpen(false);
 // //   };
 
-// //   // Optional: Close menu on route change or ESC key
-// //   useEffect(() => {
-// //     const handleEsc = (e) => {
-// //       if (e.key === 'Escape') setMenuOpen(false);
-// //     };
-// //     document.addEventListener('keydown', handleEsc);
-// //     return () => document.removeEventListener('keydown', handleEsc);
-// //   }, []);
-
 // //   return (
-// //     <header className="header">
-// //       <div className="header-container">
-// //         <a href="/" className="header-logo" onClick={closeMenu}>
-// //           Glovera<span>Beauty Salon</span>
-// //         </a>
+// //   //  <header className="header">
+// // <header className={`header ${isPinkBackground ? 'glass-black-bg' : ''}`}>
 
-// //         <button className="mobile-toggle" onClick={toggleMobileMenu}>
-// //           {menuOpen ? '✕' : '☰'}
-// //         </button>
+// //   <div className="header-container">
+// //     <a href="/" className="header-logo">
+// //       Glovera<span>Beauty Salon</span>
+// //     </a>
 
-// //         <nav className={`header-nav ${menuOpen ? 'open' : ''}`}>
-// //           <a href="/" onClick={closeMenu} style={{ animationDelay: '0.1s' }}>Home</a>
-// //           <a href="/services" onClick={closeMenu} style={{ animationDelay: '0.2s' }}>Services</a>
-// //           <a href="/gallery" onClick={closeMenu} style={{ animationDelay: '0.3s' }}>Gallery</a>
-// //           <a href="/contact" onClick={closeMenu} style={{ animationDelay: '0.4s' }}>Contact Us</a>
+// //     {/* Only show ☰ when menu is not open */}
+// //     {!menuOpen && (
+// //       <button className="mobile-toggle" onClick={toggleMobileMenu}>
+// //         ☰
+// //       </button>
+// //     )}
 
-// //           <button className="headerglass-button" style={{ animationDelay: '0.5s' }} onClick={closeMenu}>
-// //             <span className="headerbtn-text">Book Appointment</span>
-// //             <span className="headerbtn-icon">↗</span>
-// //           </button>
-// //         </nav>
+// //     {/* Mobile Menu */}
+// //     <nav className={`header-nav ${menuOpen ? 'open' : ''}`}>
+// //       <div className="mobile-nav-top">
+// //         <a href="/" className="header-logo mobile-menu-logo" onClick={closeMenu}>
+// //   Glovera<span>Beauty Salon</span>
+// // </a>
+
+
+// //         {/* Close icon always visible inside menu */}
+// //         <button className="close-icon" onClick={closeMenu}>✕</button>
 // //       </div>
-// //     </header>
+
+// //       <a href="/" onClick={closeMenu}>Home</a>
+// //       <a href="/service" onClick={closeMenu}>Services</a>
+// //       <a href="/gallery" onClick={closeMenu}>Gallery</a>
+// //       <a href="/contact" onClick={closeMenu}>Contact Us</a>
+
+// //       <button className="headerglass-button" onClick={closeMenu}>
+// //         <span className="headerbtn-text">Book Appointment</span>
+// //         <span className="headerbtn-icon">↗</span>
+// //       </button>
+// //     </nav>
+// //   </div>
+// // </header>
+
 // //   );
 // // };
 
 // // export default Header;
 
-
-// import React, { useState } from 'react';
+// import React, { useState, useEffect } from 'react';
 // import './Header.css';
+// import { useLocation } from 'react-router-dom';
 
 // const Header = () => {
 //   const [menuOpen, setMenuOpen] = useState(false);
+//   const [isScrolled, setIsScrolled] = useState(false);
+//   const location = useLocation();
 
-//   const toggleMobileMenu = () => setMenuOpen(!menuOpen);
-//   const closeMenu = () => setMenuOpen(false);
+//   const isPinkBackground =
+//     location.pathname === '/service' || location.pathname === '/contactform';
+
+//   // ✅ Detect scroll
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       const scrollTop = window.scrollY;
+//       setIsScrolled(scrollTop > 30); // scroll > 30px
+//     };
+
+//     window.addEventListener('scroll', handleScroll);
+//     return () => window.removeEventListener('scroll', handleScroll);
+//   }, []);
+
+//   const toggleMobileMenu = () => {
+//     document.body.style.overflow = menuOpen ? 'unset' : 'hidden';
+//     setMenuOpen(!menuOpen);
+//   };
+
+//   const closeMenu = () => {
+//     document.body.style.overflow = 'unset';
+//     setMenuOpen(false);
+//   };
 
 //   return (
-//     <header className="header">
+//     <header
+//       className={`header ${isPinkBackground || isScrolled ? 'glass-black-bg' : ''}`}
+//     >
 //       <div className="header-container">
-
-//         {/* Logo shown always */}
 //         <a href="/" className="header-logo">
 //           Glovera<span>Beauty Salon</span>
 //         </a>
 
-//         {/* Toggle icon visible on mobile */}
-//         <button className="mobile-toggle" onClick={toggleMobileMenu}>
-//           ☰
-//         </button>
+//         {!menuOpen && (
+//           <button className="mobile-toggle" onClick={toggleMobileMenu}>
+//             ☰
+//           </button>
+//         )}
 
-//         {/* Mobile menu */}
 //         <nav className={`header-nav ${menuOpen ? 'open' : ''}`}>
-//           {/* Top section inside mobile nav */}
 //           <div className="mobile-nav-top">
-//             {/* Logo inside dropdown too */}
-//             <a href="/" className="header-logo" onClick={closeMenu}>
+//             <a href="/" className="header-logo mobile-menu-logo" onClick={closeMenu}>
 //               Glovera<span>Beauty Salon</span>
 //             </a>
-
-//             {/* Close icon */}
 //             <button className="close-icon" onClick={closeMenu}>✕</button>
 //           </div>
 
-//           {/* Menu Links */}
-//           <a href="/" onClick={closeMenu} style={{ animationDelay: '0.1s' }}>Home</a>
-//           <a href="/services" onClick={closeMenu} style={{ animationDelay: '0.2s' }}>Services</a>
-//           <a href="/gallery" onClick={closeMenu} style={{ animationDelay: '0.3s' }}>Gallery</a>
-//           <a href="/contact" onClick={closeMenu} style={{ animationDelay: '0.4s' }}>Contact Us</a>
+//           <a href="/" onClick={closeMenu}>Home</a>
+//           <a href="/service" onClick={closeMenu}>Services</a>
+//           <a href="/gallery" onClick={closeMenu}>Gallery</a>
+//           <a href="/contact" onClick={closeMenu}>Contact Us</a>
 
-//           <button className="headerglass-button" onClick={closeMenu} style={{ animationDelay: '0.5s' }}>
+//           <button className="headerglass-button" onClick={closeMenu}>
 //             <span className="headerbtn-text">Book Appointment</span>
 //             <span className="headerbtn-icon">↗</span>
 //           </button>
@@ -146,66 +155,90 @@
 // export default Header;
 
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Header.css';
+import { useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation(); // Hook to get current URL path
+
+  // Determine if the current page should have a pink background initially
+  const isPinkBackground =
+    location.pathname === '/service' || location.pathname === '/contactform' || location.pathname === '/gallery';
+
+  // Determine if the current page is a "banner page" for scroll effect (home page, usually '/')
+  const isBannerPage = location.pathname === '/' || location.pathname === '/home'; // Adjust as per your home/banner page path
+
+  // Effect for scroll detection
+  useEffect(() => {
+    const handleScroll = () => {
+      // Only apply scroll effect if it's a banner page
+      if (isBannerPage) {
+        setIsScrolled(window.scrollY > 30); // Scroll > 30px
+      } else {
+        // If not a banner page, ensure scrolled state is off (so the glass-black-bg applies by default if needed)
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isBannerPage]); // Re-run effect if isBannerPage changes
 
   const toggleMobileMenu = () => {
-    // When opening, prevent scrolling on the body
-    if (!menuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    document.body.style.overflow = menuOpen ? 'unset' : 'hidden';
     setMenuOpen(!menuOpen);
   };
 
   const closeMenu = () => {
-    document.body.style.overflow = 'unset'; // Re-enable scrolling when closing
+    document.body.style.overflow = 'unset';
     setMenuOpen(false);
   };
 
+  // Function to determine if a link is active
+  const getNavLinkClass = (path) => {
+    return location.pathname === path ? 'active' : '';
+  };
+
   return (
-   <header className="header">
-  <div className="header-container">
-    <a href="/" className="header-logo">
-      Glovera<span>Beauty Salon</span>
-    </a>
+    <header
+      // Apply glass-black-bg if it's a pink background page OR if it's a banner page and scrolled
+      className={`header ${isPinkBackground || (isBannerPage && isScrolled) ? 'glass-black-bg' : ''}`}
+    >
+      <div className="header-container">
+        <a href="/" className="header-logo">
+          Glovera<span>Beauty Salon</span>
+        </a>
 
-    {/* Only show ☰ when menu is not open */}
-    {!menuOpen && (
-      <button className="mobile-toggle" onClick={toggleMobileMenu}>
-        ☰
-      </button>
-    )}
+        {!menuOpen && (
+          <button className="mobile-toggle" onClick={toggleMobileMenu}>
+            ☰
+          </button>
+        )}
 
-    {/* Mobile Menu */}
-    <nav className={`header-nav ${menuOpen ? 'open' : ''}`}>
-      <div className="mobile-nav-top">
-        <a href="/" className="header-logo mobile-menu-logo" onClick={closeMenu}>
-  Glovera<span>Beauty Salon</span>
-</a>
+        <nav className={`header-nav ${menuOpen ? 'open' : ''}`}>
+          <div className="mobile-nav-top">
+            <a href="/" className="header-logo mobile-menu-logo" onClick={closeMenu}>
+              Glovera<span>Beauty Salon</span>
+            </a>
+            <button className="close-icon" onClick={closeMenu}>✕</button>
+          </div>
 
+          {/* Apply active class conditionally */}
+          <a href="/" className={getNavLinkClass('/')} onClick={closeMenu}>Home</a>
+          <a href="/service" className={getNavLinkClass('/service')} onClick={closeMenu}>Services</a>
+          <a href="/gallery" className={getNavLinkClass('/gallery')} onClick={closeMenu}>Gallery</a>
+          <a href="/contactform" className={getNavLinkClass('/contactform')} onClick={closeMenu}>Contact Us</a>
 
-        {/* Close icon always visible inside menu */}
-        <button className="close-icon" onClick={closeMenu}>✕</button>
+          <button className="headerglass-button" onClick={closeMenu}>
+            <span className="headerbtn-text">Book Appointment</span>
+            <span className="headerbtn-icon">↗</span>
+          </button>
+        </nav>
       </div>
-
-      <a href="/" onClick={closeMenu}>Home</a>
-      <a href="/services" onClick={closeMenu}>Services</a>
-      <a href="/gallery" onClick={closeMenu}>Gallery</a>
-      <a href="/contact" onClick={closeMenu}>Contact Us</a>
-
-      <button className="headerglass-button" onClick={closeMenu}>
-        <span className="headerbtn-text">Book Appointment</span>
-        <span className="headerbtn-icon">↗</span>
-      </button>
-    </nav>
-  </div>
-</header>
-
+    </header>
   );
 };
 

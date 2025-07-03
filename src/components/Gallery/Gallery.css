@@ -1,0 +1,65 @@
+.masonry-container {
+  padding: 100px 30px;
+  background: #fff7f7;
+  text-align: center;
+}
+
+.gallery-title {
+  font-size: 36px;
+  color: #b35a7e;
+  margin-bottom: 40px;
+  font-family: 'Georgia', serif;
+}
+
+/* Masonry grid styles */
+.masonry-grid {
+  column-count: 4;
+  column-gap: 2px;
+}
+
+.masonry-item {
+  margin-bottom: 2px;
+  break-inside: avoid;
+  overflow: hidden;
+  /* border-radius: 12px; */
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
+}
+
+.masonry-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+  /* border-radius: 12px; */
+}
+
+.masonry-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Responsive grid columns */
+@media (max-width: 1200px) {
+  .masonry-grid {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .masonry-grid {
+    column-count: 2;
+  }
+
+  .gallery-title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .masonry-grid {
+    column-count: 1;
+  }
+
+  .gallery-title {
+    font-size: 24px;
+  }
+}
