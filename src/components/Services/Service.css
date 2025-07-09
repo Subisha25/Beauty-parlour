@@ -1,40 +1,31 @@
+/* Service.css */
+
 .makeup-page {
-  /* font-family: sans-serif; */
-font-family: 'Alux Brush', cursive;
-    background-color: rgba(248, 216, 216, 0.9);
-    /* width: 95vw;    Make it viewport width */
-    /* Ensure its parent doesn't restrict its size if not directly inside body */
+  padding-top: 8%;
+  font-family: 'Alux Brush', cursive;
+  background-color: rgba(248, 216, 216, 0.9);
+  display: flex; /* Make the main page a flex container */
+  /* Remove width: 95vw; if you want it to fill parent */
 }
 
-.page-title {
-  text-align: center;
-  color: #333;
-  font-weight: bold;
-  /* margin-bottom: 30px; */
-}
+/* Page title - if you have one outside .makeup-page, adjust its margins */
 
-.layout {
-  display: flex;
-  align-items: flex-start;
-  position: relative;
-  gap: 30px;
-}
+/* --- Layout for Desktop --- */
+/* The .layout div you previously had is removed, .makeup-page directly handles the flex */
 
 .sidebar {
   width: 300px;
   position: sticky;
-  top: 110px;
-  height: calc(100vh - 130px); /* ✅ Correct height */
+  top: 110px; /* Aligns with your fixed header if you have one */
+  height: calc(120vh - 130px);
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 0 8px #ddd;
   padding: 15px;
   overflow-y: auto;
   z-index: 10;
-  flex-shrink: 0;
+  flex-shrink: 0; /* Prevents sidebar from shrinking */
 }
-
-
 
 .sidebar::-webkit-scrollbar {
   width: 8px;
@@ -46,24 +37,22 @@ font-family: 'Alux Brush', cursive;
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background-color: #b30059; /* Pink color */
+  background-color: #b30059;
   border-radius: 10px;
   border: 2px solid transparent;
   background-clip: content-box;
 }
 
-
 .category-list {
-    
   list-style: none;
   padding: 0;
-  
   margin: 0 0 20px 0;
 }
 
-.category-list.other {
-  border-top: 1px solid #eee;
-  padding-top: 10px;
+.category-group {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .category-item {
@@ -72,71 +61,60 @@ font-family: 'Alux Brush', cursive;
   gap: 8px;
   padding: 12px 10px;
   cursor: pointer;
-color: #b30059;
+  color: #b30059;
   border-radius: 5px;
-    font-weight: bold;
-
-}
-.category-group {
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
+  font-weight: bold;
 }
 
-.subcategory-item{
-      display: flex;
+.subcategory-item {
+  display: flex;
   align-items: center;
   gap: 8px;
   padding: 10px 8px;
   cursor: pointer;
-color: #b30059;
+  color: #b30059;
   border-radius: 5px;
+  padding-left: 20px; /* Specific to subcategory indentation */
+  font-size: 0.95em;
 }
-.subcategory-item:hover {
-  background-color: #fce4ec;
-    border-left: 4px solid #b30059;
 
+.subcategory-item:hover,
+.category-item:hover {
+  background-color: #fce4ec;
+  border-left: 4px solid #b30059;
 }
-.subcategory-item.selected {
+
+.subcategory-item.selected{
   background-color: #fce4ec;
   font-weight: bold;
   color: #b30059;
   border-left: 4px solid #b30059;
 }
-.category-item.selected {
-  background-color: #fce4ec;
-  font-weight: bold;
-  border-left: 4px solid #b30059;
-}
-
-.category-item:hover {
-  background-color: #fce4ec;
-    border-left: 4px solid #b30059;
-
-}
-/* .category-list li:first-child {
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 8px;
-  margin-bottom: 8px;
-} */
 
 .icon {
-  font-size: 18px;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin-right: 8px;
 }
 
-/* ADJUST main service-cards so it doesn’t overlap with fixed sidebar */
+/* Main content area for cards */
 .service-cards {
-  flex: 1; /* Let it take the remaining space */
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding-top: 150px;
-  padding-bottom: 50px;
-  justify-content: flex-start; /* Aligns cards from left */
+  flex: 1; /* Allows cards to take up remaining space */
+  display: grid; /* Use CSS Grid for responsive card layout */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Auto-fit cards, min 300px width */
+  gap: 20px; /* Space between cards */
+  padding: 20px; /* Padding around the grid of cards */
+  margin-top: 20px; /* Align with sidebar's top margin */
+  margin-right: 20px; /* Space from the right edge */
+  justify-items: center; /* Center items within their grid cells */
+  align-content: start; /* Align content to the top within the grid container */
 }
 
+/* --- Card Styles (remain mostly the same) --- */
 .card {
-  width: 400px;
+  width: 100%; /* Make card fill its grid cell */
+  max-width: 400px; /* Limit individual card width if grid cells get too wide */
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 0 10px #ccc;
@@ -238,9 +216,12 @@ color: #b30059;
 }
 
 .view-btn {
-  border: 1px solid  #b30059;
+   display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #b30059;
   background: transparent;
-  color:  #b30059;
+  color: #b30059;
   padding: 8px 12px;
   border-radius: 4px;
   font-weight: bold;
@@ -251,53 +232,110 @@ color: #b30059;
   background-color: #f5d1e3;
 }
 
-/* Modal Overlay */
+.modal-advantages {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.modal-title {
+  font-size: 22px;
+  margin: 15px 0;
+  color: #b30059;
+  text-align: center;
+}
+
+.modal-advantages li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 15px;
+  color: white;
+}
+
+.tick-icon {
+  color: #b30059; /* pink color */
+  font-weight: bold;
+}
+
+/* --- Modal Styles (remain the same) --- */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 1000;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 20px;
-  overflow-y: auto;
+  align-items: center;
+  z-index:1000;
 }
 
-/* Modal Content */
+.modal-book {
+  background: #b30059;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: block;
+  margin: 1rem auto 0 auto; /* Top margin + centered horizontally */
+}
+
+
+
+.modal h3 {
+  margin-bottom: 12px;
+}
+
 .modal-content {
-  background: #fff;
-  border-radius: 10px;
-  max-width: 600px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  max-width: 500px;
   width: 100%;
-  max-height: 100vh; /* ✅ Limit height */
-  overflow-y: auto;  /* ✅ Enable internal scroll */
+  max-height: 450px;
+  overflow-y: auto;
   padding: 25px;
   position: relative;
   animation: fadeIn 0.3s ease;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
+
+
+/* .modal-content {
+  background: #fff;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 450px;
+  overflow-y: auto;
+  padding: 25px;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+} */
+
 .modal-content::-webkit-scrollbar {
   width: 0px;
   background: transparent;
 }
 
-
-/* Close Button */
 .close-btn {
   position: absolute;
   top: 12px;
   right: 12px;
-  font-size: 26px;
+  font-size: 20px;
   background-color: #fff;
   border: 2px solid #b30059;
   color: #b30059;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  /* width: 24px; */
+  /* height: 24px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -311,15 +349,20 @@ color: #b30059;
   color: #fff;
 }
 
-
-/* Image Styling */
-.modal-image {
-  width: 100%;
+/* .modal-image {
+  width: 10%;
   border-radius: 8px;
   margin-bottom: 20px;
+} */
+
+.modal-image {
+  width: 60%;
+  /* border-radius: 8px; */
+  margin: 20px auto; /* top-bottom: 20px, left-right: auto (center) */
+  display: block; /* required to center with margin auto */
 }
 
-/* Title & Price */
+
 .modal-content h2 {
   font-size: 22px;
   margin-bottom: 10px;
@@ -327,7 +370,17 @@ color: #b30059;
   text-align: center;
 }
 
+.eyeicon {
+  /* color: black; */
+  font-size: 20px;
+  margin: auto 0; /* override full auto */
+}
+.modal-price {
+  color: black;
+  font-weight: bold;
+}
 .modal-price-row {
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -354,7 +407,6 @@ color: #b30059;
   font-size: 13px;
 }
 
-/* Book Now Button */
 .modal-book-btn {
   background: #b30059;
   color: #fff;
@@ -367,7 +419,6 @@ color: #b30059;
   display: block;
 }
 
-/* What's Included Section */
 .modal-section {
   margin-top: 20px;
 }
@@ -406,71 +457,81 @@ color: #b30059;
   }
 }
 
-
-.subcategory-item {
-  padding-left: 20px;
-  font-size: 0.95em;
-  cursor: pointer;
-  color: #555;
-}
-
-/* ===== MOBILE CATEGORY WRAPPER (visible only on mobile) ===== */
+/* --- Mobile Specific Styles (already good, just confirming) --- */
 .mobile-category-wrapper {
-  display: none;
+  display: none; /* Hidden by default */
 }
 
 @media (max-width: 768px) {
+  .makeup-page {
+    flex-direction: column; /* Stack elements vertically on mobile */
+  }
+
   .mobile-category-wrapper {
-    display: block;
-    margin: 10px 0;
+    display: block; /* Show mobile categories */
+    margin: 0; /* Remove extra margins */
+    padding: 0; /* Remove extra padding */
+    width: 100%; /* Full width */
+    position: sticky; /* Make it sticky at the top of the viewport */
+    top: 0; /* Stick to the top */
+    z-index: 999; /* Ensure it's above other content */
+    background-color: #fff; /* Ensure it has a background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin-top: 50px;
   }
+/* Fix: horizontal scroll layout */
+.mobile-main-categories,
+.mobile-sub-categories {
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  background-color: #fff;
+}
 
-  .mobile-main-categories,
-  .mobile-sub-categories {
-    display: flex;
-    overflow-x: auto;
-    gap: 10px;
-    padding: 10px;
-    background-color: #fff;
-  }
+.main-cat-btn,
+.sub-cat-btn {
+  flex-shrink: 0;
+  background: #fce4ec;
+  color: #b30059;
+  border: 1px solid #b30059;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
-  .main-cat-btn,
-  .sub-cat-btn {
-    flex-shrink: 0;
-    background: #fce4ec;
-    color: #b30059;
-    border: 1px solid #b30059;
-    padding: 8px 14px;
-    border-radius: 20px;
-    font-size: 14px;
-    cursor: pointer;
-    white-space: nowrap;
-  }
+.main-cat-btn.active,
+.sub-cat-btn.active {
+  background: #b30059;
+  color: #fff;
+}
 
-  .main-cat-btn.active,
-  .sub-cat-btn.active {
-    background: #b30059;
-    color: #fff;
-  }
-
-  /* Hide the sidebar completely on mobile */
   .sidebar {
-    display: none !important;
+    display: none !important; /* Hide the sidebar completely on mobile */
   }
 
   .service-cards {
-    padding-top: 0px;
-    margin-left: 15px;
-    justify-content: center;
+    padding: 20px 10px; /* Adjust padding for mobile cards */
+    margin-top: 0; /* Remove desktop top margin */
+    margin-left: 0; /* Remove desktop left margin */
+    margin-right: 0; /* Remove desktop right margin */
+    justify-content: center; /* Center cards in the available space */
+    grid-template-columns: 1fr; /* Single column on mobile */
   }
 
   .card {
     width: 100%;
-    max-width: 90vw;
+    max-width: 380px; /* Limit width even if screen is very wide */
   }
 }
 
-
+/* Scrollbar styles for mobile categories */
 .mobile-main-categories::-webkit-scrollbar,
 .mobile-sub-categories::-webkit-scrollbar {
   height: 3px;
@@ -478,18 +539,11 @@ color: #b30059;
 
 .mobile-main-categories::-webkit-scrollbar-thumb,
 .mobile-sub-categories::-webkit-scrollbar-thumb {
-  background-color: #b30059; /* Pink thumb */
+  background-color: #b30059;
   border-radius: 10px;
 }
 
 .mobile-main-categories::-webkit-scrollbar-track,
 .mobile-sub-categories::-webkit-scrollbar-track {
-  background: #fce4ec; /* Light pink track */
-}
-
-.icon {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-  margin-right: 8px;
+  background: #fce4ec;
 }

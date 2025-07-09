@@ -1,0 +1,155 @@
+.booknow-body {
+    padding:6% ;
+  background: url('https://i.pinimg.com/736x/ab/63/0c/ab630c577431409c21cceccc56d63f09.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.booknow-form-container {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  text-align: center;
+}
+
+.booknow-heading {
+  margin-bottom: 30px;
+  color: #b30059;
+  font-family: "dancing script", cursive;
+  /* text-shadow: 0 0 5px #000; */
+  font-size: 32px;
+}
+
+.booknow-form {
+  width: 100%;
+}
+
+.booknow-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.booknow-input-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.booknow-input {
+font-family:  cursive;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #fff;
+  padding: 10px 5px;
+  color: #f5abc4;
+  font-size: 16px;
+  font-weight: bolder;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+/* Make autofill consistent */
+.booknow-input:-webkit-autofill,
+.booknow-input:-webkit-autofill:hover,
+.booknow-input:-webkit-autofill:focus,
+.booknow-input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  -webkit-text-fill-color: #fff !important;
+  font-family:  cursive !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Placeholder font */
+.booknow-input::placeholder {
+  color: #e0e0e0;
+  font-family: "Dancing Script", cursive;
+}
+
+/* Focused input style */
+.booknow-input:focus {
+  border-bottom-color: #ff4081;
+}
+
+
+
+.booknow-error {
+  color: #ffcccc;
+  font-size: 12px;
+  text-align: left;
+  margin-top: 5px;
+}
+
+.booknow-submit-btn {
+  width: 100%;
+  padding: 15px;
+  margin-top: 30px;
+  background-color: #ff4081;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.autofill-style {
+  color: #f5abc4;
+  font-family:  cursive;
+  font-weight: 600;
+ 
+}
+
+
+.booknow-submit-btn:hover {
+  background-color: #e73370;
+}
+
+.booknow-input[type="date"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #fff;
+  padding: 10px 5px;
+  font-size: 16px;
+  font-weight: bolder;
+  outline: none;
+  color: #ffffff !important;
+  transition: border-color 0.3s, font-family 0.3s;
+  font-family:'dancing script', cursive !important; /* default */
+}
+
+/* When user fills value - apply cursive font */
+.booknow-input[type="date"]:not(:placeholder-shown) {
+  font-family: cursive;
+  color:#fff !important;
+
+}
+
+/* Fallback if placeholder-shown doesn't work on date */
+.booknow-input[type="date"]:valid {
+  font-family: cursive;
+    color:#f5abc4 !important;
+
+}
+
+.booknow-input.empty[type="date"] {
+  font-family: 'Dancing Script', cursive !important;
+  color: #fff !important; /* default white */
+}
+
+.booknow-input.filled[type="date"] {
+  font-family: cursive !important;
+  color: #f5abc4 !important; /* after filled */
+}

@@ -1,0 +1,90 @@
+.dashboard-sidebar {
+  width: 80px;
+  background-color: #b30059;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+}
+
+.sidebar-icon-wrapper {
+  position: relative;
+  margin: 15px 0;
+  text-decoration: none;
+}
+
+.sidebar-icon {
+  width: 45px;
+  height: 45px;
+  background: #fce4ec;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b30059;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.sidebar-icon-wrapper:hover .sidebar-icon,
+.sidebar-icon-wrapper.active .sidebar-icon {
+  background: #f0ebff;
+  transform: scale(1.05);
+}
+
+/* Tooltip bubble style */
+.tooltip-text {
+  position: absolute;
+  left: 70px; /* little more spacing from icon */
+  top: 50%;
+  transform: translateY(-50%);
+  background: #b30059;
+  color: white;
+  padding: 10px 18px; /* increased padding */
+  border-radius: 14px; /* more rounded */
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+  font-size: 16px; /* bigger text */
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+
+
+/* Arrow */
+.tooltip-text::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 15px;
+  height: 10px;
+  background: #b30059;
+}
+
+/* Show tooltip on hover */
+.sidebar-icon-wrapper:hover .tooltip-text {
+  opacity: 1;
+}
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  background:  #fce4ec;
+}
+
+.dashboard-content {
+  flex: 1;
+  /* padding: 20px; */
+  overflow-y: auto;
+}

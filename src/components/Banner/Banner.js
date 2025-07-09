@@ -3,6 +3,8 @@ import './Banner.css';
 import AboutUs from '../BeautyInfoSection/AboutUs';
 import BeautySection from '../BeautyInfoSection/BeautySection';
 import OurServices from '../OurServices/OurServices';
+import { useNavigate } from 'react-router-dom';
+
 
 const bannerImages = [
   "https://i.pinimg.com/736x/3f/12/f5/3f12f585444d763cc58802e5f7a07fc1.jpg",
@@ -12,8 +14,12 @@ const bannerImages = [
   "https://rukminim2.flixcart.com/image/850/1000/xif0q/lipstick/9/t/r/8-10-products-in-collection-red-matte-lipstick-liquid-lipstick-2-original-imahyq8jwvrphsdp.jpeg?q=90&crop=false",
   "https://t4.ftcdn.net/jpg/14/01/34/39/360_F_1401343943_jU9B7UmgwhukEP2WPaTOb52GdvkzTmlo.jpg"
 ];
-
 const Banner = () => {
+
+
+const navigate = useNavigate(); 
+
+
   return (
     <>
     <div className="banner">
@@ -27,7 +33,9 @@ const Banner = () => {
    <div className="banner-content">
   <h1>Glow with Confidence</h1>
   <p>From threading to facials, experience personalized care that brings out your inner beauty.</p>
-  <button className="banner-buttons">Book Your Appointment</button>
+  <button className="banner-buttons" onClick={() => {
+    navigate('/service');
+  }}>Book Your Appointment</button>
 </div>
 
 <a href="#next-section" className="scroll-down">↓</a>
