@@ -68,7 +68,7 @@
   color: #f9c3d1;
 }
 
-.social-icons {
+/* .social-icons {
   margin-top: 10px;
 }
 
@@ -84,6 +84,22 @@
 .social-icons a:hover {
   transform: scale(1.2);
   color: #f9c3d1;
+} */
+
+.footer-icon {
+  margin-right: 8px;
+  color: #b30059;
+}
+
+.social-icons a {
+  margin-right: 30px;
+  font-size: 18px;
+  color: #b30059;
+  transition: 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #b30059;
 }
 
 .footer-bottom {

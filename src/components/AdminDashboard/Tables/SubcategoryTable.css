@@ -1,0 +1,313 @@
+/* --- Wrapper for the entire SubcategoryTable component --- */
+.subcategorytable-wrapper {
+  position: relative;
+  min-height: 100vh; /* Adjust as needed, or remove if parent handles height */
+  background-image: url('/src/components/AdminLogin/images/back.jpeg'); /* Make sure this path is correct */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  overflow-x: hidden;
+}
+
+.subcategorydelete-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 5, 5, 0.6);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.subcategorydelete-glass-card {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 30px 40px;
+  backdrop-filter: blur(12px);
+  color: white;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  max-width: 320px;
+}
+
+.subcategorydelete-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.subcategorydelete-buttons .confirm-btn,
+.subcategorydelete-buttons .cancel-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.subcategorydelete-buttons .confirm-btn {
+  background: #e63946;
+  color: white;
+}
+
+.subcategorydelete-buttons .cancel-btn {
+  background: #6c757d;
+  color: white;
+}
+
+
+/* --- Page Title --- */
+.subcategorytable-title {
+  font-family: 'Satisfy', cursive;
+  font-size: 38px;
+  color: #b30059;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  margin-bottom: 20px;
+}
+
+/* --- Add Subcategory Button --- */
+.subcategorytable-add-button {
+    margin-left: 8%;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #b30059;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
+}
+
+.subcategorytable-add-button:hover {
+  background-color: #9b185a;
+}
+
+/* --- Overlay for the popup --- */
+.subcategorytable-modal-overlay {
+ position: fixed; /* Covers the entire viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's above other content */
+background-color: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  overflow-y: auto;
+  animation: fadeIn 0.3s ease;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* --- Close button for popup --- */
+.subcategorytable-close-icon {
+  position: absolute;
+  top: 10px;
+  right: 18px;
+  background: transparent;
+  border: none;
+  font-size: 26px;
+  color: white;
+  cursor: pointer;
+  z-index: 1;
+  transition: transform 0.2s ease;
+}
+
+.subcategorytable-close-icon:hover {
+  transform: scale(1.2);
+  color: #ff4d4d;
+}
+
+/* --- Modify the glass form for popup behavior --- */
+.subcategorytable-glass-form {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  min-height: 250px; /* Adjusted min-height for subcategory form */
+  padding: 40px 25px 25px; /* Increased top padding for close button */
+  border-radius: 20px;
+   background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Ensure inputs and selects take full width within the popup */
+.subcategorytable-glass-form input[type="text"],
+.subcategorytable-glass-form select {
+  width: calc(100% - 40px); /* Account for form padding */
+  max-width: 550px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  border-radius: 10px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.subcategorytable-glass-form input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Custom styling for select dropdown arrow */
+.subcategorytable-glass-form select {
+  color: white;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.2-6.2H18.2c-4.1%200-7.9%201.5-10.9%204.6L.9%2084.7c-2.8%202.7-2.8%207.2-.1%209.9l132.8%20132.8c2.8%202.7%207.2%202.7%209.9%200l132.8-132.8c2.8-2.7%202.8-7.2-.1-9.9z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: right 10px top 50%;
+  background-size: 12px auto;
+}
+
+.subcategorytable-glass-form select option {
+  background: rgba(40, 40, 40, 0.9);
+  color: white;
+}
+
+
+/* Styling for the form itself (inside glass form) */
+.subcategorytable-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+
+.subcategorytable-form-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.subcategorytable-form-buttons button {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #b30059;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.subcategorytable-form-buttons .cancel-btn {
+  background-color: gray;
+}
+
+.subcategorytable-form-buttons button:hover {
+  background-color: #8a0040;
+}
+
+
+/* --- Subcategory Table Styling --- */
+.subcategorytable-table {
+    padding: 40px;
+  width: 80vw;
+  /* max-width: 800px; */
+  border-collapse: collapse;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  backdrop-filter: blur(10px);
+  /* border-radius: 16px; */
+  overflow: hidden;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.subcategorytable-table th,
+.subcategorytable-table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 12px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 14px;
+}
+
+.subcategorytable-table th {
+  background-color: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+}
+
+.subcategorytable-table td button {
+  background: transparent;
+  border: none;
+  color: rgb(249, 167, 189);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.2s ease;
+}
+
+.subcategorytable-add-button{
+    align-self: flex-start; 
+    /* margin-left: 200px; */
+}
+.subcategorytable-table td button:hover {
+  color: #ff4d4d;
+}
+
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 768px) {
+  .subcategorytable-glass-form {
+    width: 95%;
+    padding: 30px 15px 15px;
+    min-height: auto;
+  }
+  .subcategorytable-form-buttons {
+    flex-direction: column;
+  }
+  .subcategorytable-table th,
+  .subcategorytable-table td {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .subcategorytable-glass-form {
+    padding: 25px 10px 10px;
+  }
+  .subcategorytable-title {
+    font-size: 30px;
+  }
+  .subcategorytable-add-button {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+  .subcategorytable-close-icon {
+    font-size: 20px;
+    right: 10px;
+    top: 5px;
+  }
+}

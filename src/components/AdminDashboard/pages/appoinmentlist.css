@@ -1,0 +1,121 @@
+.appointment-wrapper {
+  background-image: url('/src/components/AdminLogin/images/image2.jpg'); /* Make sure this path is correct */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+     padding-left: 100px;   
+
+}
+
+.appointment-title {
+      font-family: 'Satisfy', cursive;
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #0a0a0a;
+  font-weight: bold;
+}
+
+.appointment-table-container {
+  width: 100%;
+  max-width: 1200px;
+  background: rgba(0, 0, 0, 0.6); /* Darker black translucent background */
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 30px;
+  margin-bottom: 30px;
+  overflow-x: auto;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.appointment-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0; /* Important to remove default spacing */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Optional outer border */
+}
+
+.appointment-table th,
+.appointment-table td {
+  padding: 15px;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* ✅ This adds both row and column lines */
+  color: white;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.appointment-table th {
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+
+
+@media (max-width: 768px) {
+  .appointment-wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: stretch;
+  }
+}
+
+.appointment-title {
+  font-family: 'Satisfy', cursive;
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #0a0a0a;
+  font-weight: bold;
+}
+
+@media (max-width: 500px) {
+  .appointment-title {
+    font-size: 24px;
+  }
+}
+
+.appointment-table-container {
+  width: 100%;
+  max-width: 1200px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 30px;
+  margin-bottom: 30px;
+  overflow-x: auto;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Scrollable table on mobile */
+.appointment-table {
+  min-width: 800px; /* Prevents squeezing columns on small screens */
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.appointment-table th,
+.appointment-table td {
+  padding: 15px;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  background-color: rgba(255, 255, 255, 0.05);
+  white-space: nowrap; /* Prevents text from wrapping on mobile */
+}
+
+.appointment-table th {
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.1);
+}

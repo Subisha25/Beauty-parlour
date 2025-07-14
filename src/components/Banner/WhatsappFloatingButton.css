@@ -1,0 +1,180 @@
+
+.whatsapp-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* Icon + "Need help?" row */
+.whatsapp-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* "Need help? Contact us!" bubble */
+.whatsapp-bubble {
+  background: linear-gradient(135deg, #25d366, #1ebe57);
+  padding: 4px 45px;
+  border-radius: 50px;
+  width: 200px;
+  color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+.whatsapp-text {
+  font-size: 13px;
+  font-weight: 900;
+  /* line-height: 1.2; */
+}
+
+/* WhatsApp / Close icon */
+.whatsapp-icon-wrapper {
+  background-color: #25d366;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 1.5s infinite;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-icon-wrapper.rotate {
+  transform: rotate(180deg);
+}
+
+.whatsapp-icon,
+.close-icon {
+  color: white;
+  font-size: 22px;
+}
+
+/* Cloud-style popup box */
+
+.whatsapp-popup {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  background: linear-gradient(135deg, #7e7e7e, #1def7f);
+  color: #0f5132;
+  padding: 15px 20px;
+  border-radius: 20px 20px 0 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  width: 300px;
+  height: 200px;
+  text-align: center;
+
+  /* ✨ Animation */
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  animation: popupIn 0.5s forwards ease-in-out;
+}
+
+/* .whatsapp-popup {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  background: linear-gradient(135deg, #7e7e7e, #1def7f);
+  color: #0f5132;
+  padding: 15px 20px;
+  border-radius: 20px 20px 0 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.3s ease-in-out;
+  width: 300px;
+  height: 200px;
+  text-align: center;
+} */
+
+.popup-message {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: aliceblue;
+}
+
+.popup-button {
+  background: rgba(37, 211, 102, 0.2);
+  color: #023414;
+  padding: 8px 20px;
+  font-family:  cursive;
+  font-size: 15px;
+  font-weight: 900; /* 💪 Extra Bold */
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 2px solid rgb(6, 62, 26);
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+
+.popup-button:hover {
+border: 2px solid rgb(37, 211, 101);
+  background: rgba(37, 211, 102, 0.4);
+  color: white;
+  box-shadow: 0 6px 14px rgba(37, 211, 102, 0.4);
+  transform: scale(1.05);
+}
+
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+  }
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add this new keyframe for close icon rotation */
+@keyframes rotateCloseIcon {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg); /* Or 360deg for a full spin */
+  }
+}
+
+.whatsapp-icon-wrapper.rotate .close-icon {
+  animation: rotateCloseIcon 0.3s ease-in-out forwards; /* Apply animation when wrapper has 'rotate' class */
+}
+
+@keyframes popupIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

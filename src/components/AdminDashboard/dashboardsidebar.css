@@ -14,9 +14,12 @@
   z-index: 100;
 }
 
-.sidebar-icon-wrapper {
+.sidebar-icon-group {
   position: relative;
   margin: 15px 0;
+}
+
+.sidebar-icon-wrapper {
   text-decoration: none;
 }
 
@@ -34,33 +37,31 @@
 }
 
 .sidebar-icon-wrapper:hover .sidebar-icon,
-.sidebar-icon-wrapper.active .sidebar-icon {
+.sidebar-icon.active {
   background: #f0ebff;
   transform: scale(1.05);
 }
 
-/* Tooltip bubble style */
+/* Tooltip */
 .tooltip-text {
   position: absolute;
-  left: 70px; /* little more spacing from icon */
+  left: 100%; /* right next to icon */
   top: 50%;
   transform: translateY(-50%);
   background: #b30059;
   color: white;
-  padding: 10px 18px; /* increased padding */
-  border-radius: 14px; /* more rounded */
+  padding: 10px 18px;
+  border-radius: 14px;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
   transition: 0.3s;
-  font-size: 16px; /* bigger text */
+  font-size: 16px;
   font-weight: 500;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   z-index: 10;
 }
 
-
-/* Arrow */
 .tooltip-text::before {
   content: "";
   position: absolute;
@@ -72,19 +73,41 @@
   background: #b30059;
 }
 
-/* Show tooltip on hover */
-.sidebar-icon-wrapper:hover .tooltip-text {
+.sidebar-icon-group:hover .tooltip-text {
   opacity: 1;
+  pointer-events: auto;
 }
 
-.dashboard-container {
+/* Submenu inside tooltip */
+.submenu {
   display: flex;
-  height: 100vh;
-  background:  #fce4ec;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.dashboard-content {
-  flex: 1;
-  /* padding: 20px; */
-  overflow-y: auto;
+.submenu-item {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.submenu-item:hover {
+  text-decoration: underline;
+}
+
+/* Profile image */
+.sidebar-profile-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+.sidebar-icon-placeholder {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ccc;
 }

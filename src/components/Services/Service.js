@@ -167,7 +167,8 @@ const navigate = useNavigate();
       </main>
 
       {selectedService && (
-        <div className="modal-overlay" onClick={() => setSelectedService(null)}>
+        <div className="modal-overlay
+        " onClick={() => setSelectedService(null)}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
            <div className="modal-content">
   {/* Close Icon */}

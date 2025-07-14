@@ -1,0 +1,368 @@
+/* --- Wrapper for the entire ServiceTable component --- */
+.servicetable-wrapper {
+padding-left: 100px;
+  position: relative;
+  min-height: 100vh; /* Adjust as needed, or remove if parent handles height */
+  background-image: url('/src/components/AdminLogin/images/back.jpeg'); /* Make sure this path is correct */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  overflow-x: hidden;
+}
+
+/* --- Page Title --- */
+.servicetable-title {
+  font-family: 'Satisfy', cursive;
+  font-size: 38px;
+  color: #b30059;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  margin-bottom: 20px;
+  text-align: center;       /* ✅ This centers the text */
+  width: 100%;              /* Ensures full width so text can be centered */
+}
+
+
+/* --- Add Service Button --- */
+.servicetable-add-button {
+    margin-left: 6%;
+    align-self: flex-start; 
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #b30059;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
+}
+
+.servicetable-add-button:hover {
+  background-color: #9b185a;
+}
+
+/* --- Overlay for the popup --- */
+.servicetable-modal-overlay {
+ position: fixed; /* Covers the entire viewport */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's above other content */
+background-color: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  overflow-y: auto;
+  animation: fadeIn 0.3s ease;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* --- Close button for popup --- */
+.servicetable-close-icon {
+  position: absolute;
+  top: 10px; /* Adjusted from 8px to give more space */
+  right: 18px;
+  background: transparent;
+  border: none;
+  font-size: 26px;
+  color: white;
+  cursor: pointer;
+  z-index: 1;
+  transition: transform 0.2s ease;
+}
+
+.servicetable-close-icon:hover {
+  transform: scale(1.2);
+  color: #ff4d4d;
+}
+
+/* --- Modify the glass form for popup behavior --- */
+.servicetable-glass-form {
+  position: relative;
+  width: 55vw;                /* ✅ Use viewport width, with some padding */
+  max-width: none;            /* ✅ Remove max-width restriction */
+  min-height: 320px;
+  padding: 40px 25px 25px;
+  border-radius: 20px;
+ background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Ensure inputs and selects take full width within the popup */
+.servicetable-glass-form input[type="text"],
+.servicetable-glass-form input[type="number"], /* Added for price/discount */
+.servicetable-glass-form input[type="file"] {
+  width: calc(107% - 40px); /* Adjust to account for form padding */
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  border-radius: 10px;
+  outline: none;
+}
+
+.servicetable-glass-form select{
+  width: calc(107% - 40px); /* Adjust to account for form padding */
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgb(19, 18, 18);
+  border-radius: 10px;
+  outline: none;
+}
+
+.servicetable-glass-form input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.servicetable-delete-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 5, 5, 0.6);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.servicetable-delete-glass-card {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 30px 40px;
+  backdrop-filter: blur(12px);
+  color: white;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  max-width: 320px;
+}
+
+.servicetable-delete-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.servicetable-delete-buttons .confirm-btn,
+.servicetable-delete-buttons .cancel-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.servicetable-delete-buttons .confirm-btn {
+  background: #e63946;
+  color: white;
+}
+
+.servicetable-delete-buttons .cancel-btn {
+  background: #6c757d;
+  color: white;
+}
+
+
+/* Styling for the form itself (inside glass form) */
+.servicetable-form {
+  width: 50vw; /* Ensure form takes full width of its parent (.servicetable-glass-form) */
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Space between form elements */
+  align-items: center; /* Center form elements */
+}
+
+.servicetable-form .input-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  width: 100%;
+}
+
+.servicetable-form .input-row input,
+.servicetable-form .input-row select {
+  flex: 1;
+}
+
+
+/* Current image preview within the form */
+.servicetable-form .current-image-preview {
+    color: white;
+    font-size: 0.9em;
+    margin-top: -5px; /* Adjust spacing */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.servicetable-form .current-image-preview img {
+    border-radius: 3px;
+}
+
+
+.servicetable-form-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%; /* Ensure buttons take full width of form */
+  margin-top: 10px; /* Space above buttons */
+}
+
+.servicetable-form-buttons button {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #b30059;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.servicetable-form-buttons .cancel-btn {
+  background-color: gray;
+}
+
+.servicetable-form-buttons button:hover {
+  background-color: #8a0040;
+}
+
+
+/* --- Service Table Styling --- */
+.servicetable-table {
+    margin-left: 4%;
+  width: 88vw; /* Full width */
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: rgba(0, 0, 0, 0.6); /* Optional background */
+  color: white;
+  margin-bottom: 20px;
+  /* border-radius: 16px; */
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+/* Table Headings and Data Cells */
+.servicetable-table th,
+.servicetable-table td {
+  text-align: center;
+  padding: 12px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 14px;
+}
+
+.servicetable-table th {
+  background-color: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+}
+
+.servicetable-table img {
+  border-radius: 5px;
+}
+
+.servicetable-table td button {
+  background: transparent;
+  border: none;
+  color: rgb(249, 167, 189);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.2s ease;
+}
+
+.servicetable-table td button:hover {
+  color: #ff4d4d;
+}
+
+/* Advantages list in table */
+.servicetable-table .adv-list {
+  list-style: none; /* Remove default bullet points */
+  padding: 0;
+  margin: 0;
+  text-align: left; /* Align text within list items */
+}
+.servicetable-table .adv-list li {
+  position: relative;
+  padding-left: 15px; /* Space for custom bullet */
+  margin-bottom: 2px;
+  font-size: 0.95em;
+}
+.servicetable-table .adv-list li::before {
+  content: '✔'; /* Custom checkmark bullet */
+  color: #4CAF50; /* Green checkmark */
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 992px) {
+  .servicetable-table {
+    max-width: 100%;
+    overflow-x: auto; /* Allow horizontal scrolling for smaller screens */
+  }
+  .servicetable-table th,
+  .servicetable-table td {
+    padding: 10px 8px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .servicetable-glass-form {
+    width: 95%;
+    padding: 30px 15px 15px; /* Adjust padding for close button and general fit */
+    min-height: auto; /* Allow height to adjust */
+  }
+  .servicetable-form-buttons {
+    flex-direction: column;
+  }
+  .servicetable-table th,
+  .servicetable-table td {
+    padding: 8px 5px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .servicetable-glass-form {
+    padding: 25px 10px 10px;
+  }
+  .servicetable-title {
+    font-size: 30px;
+  }
+  .servicetable-add-button {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+  .servicetable-close-icon {
+    font-size: 20px;
+    right: 10px;
+    top: 5px;
+  }
+}

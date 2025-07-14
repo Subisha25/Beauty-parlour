@@ -1,0 +1,303 @@
+.admin-profile-wrapper {
+  background-image: url('/src/components/AdminLogin/images/image2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.input-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: white;
+}
+
+.input-field label {
+  font-size: 15px;
+  font-weight: bold;
+  text-align: start;
+}
+
+.admin-profile-title {
+  font-family: 'Satisfy', cursive;
+  font-size: 36px;
+  color: #000;
+  margin-bottom: 30px;
+}
+
+.admin-profile-form {
+  width: 100%;
+  height: 500px;
+  max-width: 500px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.profile-image-preview {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.profile-image-preview img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  cursor: pointer;
+}
+
+.profile-image-preview input {
+  display: none;
+}
+
+.input-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.input-row input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  outline: none;
+}
+
+.save-btn {
+  background-color: #b30059;
+  border: none;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 30px;
+}
+
+.save-btn:hover {
+  background-color: #99004d;
+}
+.password-field-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.password-field-wrapper input {
+  width: 100%;
+  padding: 18px 48px 14px 14px; /* more padding */
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  outline: none;
+  box-sizing: border-box;
+}
+
+
+.eye-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+@media (max-width: 600px) {
+  .input-row {
+    flex-direction: column;
+  }
+}
+
+.success-toast {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 9999;
+  animation: slideInRight 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+  font-weight: 500;
+}
+
+/* Slide in animation */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Fade out after delay */
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+}
+.change-login {
+  margin-top: 15px;
+  color: #f9f6f8;
+  text-align: center;
+  cursor: pointer;
+  /* font-weight: bold; */
+  text-decoration: underline;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-form {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 30px;
+  width: 90%;
+  height: 400px;
+  max-width: 400px;
+  color: white;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+.popup-form h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.popup-form input {
+  width: 100%;
+  padding: 16px;               /* more height/space */
+  font-size: 16px;             /* better visibility */
+  margin-bottom: 18px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  outline: none;
+  box-sizing: border-box;      /* ensures padding doesn't shrink field */
+}
+
+
+.popup-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.popup-buttons button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #b30059;
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.popup-buttons button:last-child {
+  background: #666;
+}
+.success-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  animation: slide-in 0.5s ease;
+  z-index: 999;
+}
+
+@keyframes slide-in {
+  from {
+    right: -300px;
+    opacity: 0;
+  }
+  to {
+    right: 20px;
+    opacity: 1;
+  }
+}
+
+
+
+
+/* ✅ Mobile Responsive Media Query */
+@media (max-width: 600px) {
+  .admin-profile-title {
+    font-size: 28px;
+  }
+
+  .admin-profile-form {
+    padding: 20px;
+    height: auto;
+  }
+
+  .input-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .profile-image-preview img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .popup-form {
+    padding: 20px;
+    height: auto;
+  }
+
+  .popup-form h3 {
+    font-size: 20px;
+  }
+
+  .save-btn {
+    font-size: 15px;
+  }
+}
