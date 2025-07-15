@@ -29,7 +29,7 @@ const AdminLogin = () => {
 
         if (res.data.success) {
           // ✅ Navigate on successful login
-          navigate('/dashboardlayout');
+          navigate('/dashboardlayout/home');
         }
       } catch (err) {
         // ❌ Show error on invalid credentials
